@@ -39,12 +39,13 @@ function Home() {
 
   return (
     <Box
-      height={"100%"}
-      textAlign="center"
-      p={4}
       display={"flex"}
       flexDirection={"column"}
+      alignItems={"center"}
       justifyContent={"center"}
+      textAlign="center"
+      height={"100%"}
+      p={4}
     >
       <Stack
         direction="row"
