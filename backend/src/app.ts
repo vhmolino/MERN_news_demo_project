@@ -8,13 +8,12 @@ import newsRoutes from "./routes/newsRoutes";
 dotenv.config();
 const app = express();
 
-app.use(express.json()); // Para parsear JSON
-app.use(cors()); // Habilitar CORS
-app.use(morgan("dev")); //Mostrar logs de llamadas a backend
-// Rutas
+app.use(express.json());
+app.use(cors());
+app.use(morgan("dev"));
+
 app.use("/news", newsRoutes);
 
-// Iniciar el servidor
 connectDB();
 const PORT = process.env.PORT;
 console.log(PORT);

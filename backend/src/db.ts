@@ -10,11 +10,11 @@ const connectDB = async () => {
   try {
     client = new MongoClient(dbUrl || "");
     await client.connect();
-    db = client.db(); // Accede a la base de datos
+    db = client.db();
     console.log("Conectado a MongoDB");
   } catch (error) {
     console.error("Error al conectar a MongoDB:", error);
-    process.exit(1); // Termina el proceso si la conexión falla
+    process.exit(1);
   }
 };
 
