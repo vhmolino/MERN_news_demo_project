@@ -1,9 +1,10 @@
 import { Router } from "express";
-import { getNews } from "../controllers/newsController";
+import { getNews } from "../controllers/get-news";
+import { addNew } from "../controllers/add-new";
 
 const router = Router();
 
-// Definir las rutas relacionadas con los usuarios
 router.get("/", getNews);
+router.post("/add", addNew);
 
 export default router;
