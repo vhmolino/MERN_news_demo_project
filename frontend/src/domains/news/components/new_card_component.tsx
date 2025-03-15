@@ -8,13 +8,17 @@ import {
 } from "@mui/material";
 import { New } from "../types/types";
 import AlertDialog from "../../../components/alertDialog";
+import { archiveNew } from "../interfaces/archive_news";
+import { enqueueSnackbar } from "notistack";
+import { deleteNew } from "../interfaces/delete_new";
 
 interface NewCardProps {
   newData: New;
   view: "news" | "archived";
+  setNews: React.Dispatch<React.SetStateAction<New[]>>;
 }
 
-const NewCard = ({ newData, view }: NewCardProps) => {
+const NewCard = ({ newData, view, setNews }: NewCardProps) => {
   return (
     <Card
       sx={{
@@ -53,7 +57,25 @@ const NewCard = ({ newData, view }: NewCardProps) => {
             description={"¿Seguro que desea archivar la noticia?"}
             buttonText={"Archivar"}
             buttonColor={"error"}
-            onAccept={() => {}}
+            onAccept={async (handleCLose) => {
+              const response = await archiveNew(newData._id);
+              if (response.error) {
+                handleCLose();
+                enqueueSnackbar(response.error, {
+                  variant: "error",
+                  preventDuplicate: true,
+                  autoHideDuration: 1500,
+                });
+              } else {
+                setNews((prev) => prev.filter((e) => e._id !== newData._id));
+                handleCLose();
+                enqueueSnackbar("Noticia archivada", {
+                  variant: "success",
+                  preventDuplicate: true,
+                  autoHideDuration: 1500,
+                });
+              }
+            }}
             onCancel={() => {}}
           />
         ) : (
@@ -62,7 +84,25 @@ const NewCard = ({ newData, view }: NewCardProps) => {
             description={"¿Seguro que desea eliminar la noticia?"}
             buttonText={"Eliminar"}
             buttonColor={"error"}
-            onAccept={() => {}}
+            onAccept={async (handleCLose) => {
+              const response = await deleteNew(newData._id);
+              if (response.error) {
+                handleCLose();
+                enqueueSnackbar(response.error, {
+                  variant: "error",
+                  preventDuplicate: true,
+                  autoHideDuration: 1500,
+                });
+              } else {
+                setNews((prev) => prev.filter((e) => e._id !== newData._id));
+                handleCLose();
+                enqueueSnackbar("Noticia eliminada", {
+                  variant: "success",
+                  preventDuplicate: true,
+                  autoHideDuration: 1500,
+                });
+              }
+            }}
             onCancel={() => {}}
           />
         )}
