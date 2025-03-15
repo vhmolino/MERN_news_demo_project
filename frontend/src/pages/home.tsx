@@ -1,41 +1,12 @@
-// import { useState } from "react";
 import ReactLogo from "../assets/react.svg";
 import Mongologo from "../assets/mongodb.svg";
 import Expresslogo from "../assets/express.svg";
 import Nodelogo from "../assets/node.svg";
-// import React from "react";
-// import { getNews } from "./api/news/get-news";
-// import { New } from "./types/news";
-// import { enqueueSnackbar } from "notistack";
 import { Box, Button, Link, Stack, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 function Home() {
   const navigate = useNavigate();
-  // const [news, setNews] = useState<New[]>([]);
-
-  // React.useEffect(() => {
-  //   const fetchNews = async () => {
-  //     try {
-  //       const data = await getNews();
-  //       if (data.error) {
-  //         enqueueSnackbar(data.error, {
-  //           variant: "error",
-  //           autoHideDuration: 1500,
-  //         });
-  //         return;
-  //       }
-  //       setNews(data.data);
-  //       enqueueSnackbar("Noticias obtenidas", {
-  //         variant: "success",
-  //         autoHideDuration: 1500,
-  //       });
-  //     } catch (error) {
-  //       console.error("Error obteniendo noticias:", error);
-  //     }
-  //   };
-  //   void fetchNews();
-  // }, []);
 
   return (
     <Box
