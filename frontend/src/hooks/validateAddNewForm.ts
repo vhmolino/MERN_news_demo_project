@@ -5,7 +5,7 @@ const validateAddNewForm = (
   newObject: Partial<New>
 ): { error: string } | null => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { title, description, content, author, date, archived } = newObject;
+  const { title, description, content, author, date, archivedDate } = newObject;
 
   if (!title || title.trim() === "") {
     return { error: "El título no puede estar vacío." };

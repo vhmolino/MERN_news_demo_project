@@ -7,5 +7,5 @@ export type New = {
   content: string;
   author: string;
   date: Date;
-  archived: boolean;
+  archivedDate: Date | null;
 };
