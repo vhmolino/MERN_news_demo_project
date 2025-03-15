@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 
 import { Box, Typography, Container } from "@mui/material";
-import { New } from "../types/types";
+import { New } from "../domains/news/types/types";
 
 const NewsDetailComponent = ({ newData }: { newData: New }) => {
   return (
