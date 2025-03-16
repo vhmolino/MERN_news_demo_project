@@ -11,6 +11,7 @@ import AlertDialog from "../../../components/alertDialog";
 import { archiveNew } from "../interfaces/archive_news";
 import { enqueueSnackbar } from "notistack";
 import { deleteNew } from "../interfaces/delete_new";
+import { useNavigate } from "react-router-dom";
 
 interface NewCardProps {
   newData: New;
@@ -19,6 +20,7 @@ interface NewCardProps {
 }
 
 const NewCard = ({ newData, view, setNews }: NewCardProps) => {
+  const navigate = useNavigate();
   return (
     <Card
       sx={{
@@ -41,14 +43,22 @@ const NewCard = ({ newData, view, setNews }: NewCardProps) => {
           color="text.primary"
           sx={{ fontWeight: 500 }}
         >
-          {newData.description}
+          {newData.description.length > 140
+            ? `${newData.description.substring(0, 137)}...`
+            : newData.description}
         </Typography>
         <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
           Autor: {newData.author}
         </Typography>
       </CardContent>
       <CardActions sx={{ display: "flex", justifyContent: "space-between" }}>
-        <Button size="small" color="primary">
+        <Button
+          size="small"
+          color="primary"
+          onClick={() => {
+            navigate("/news-detail", { state: { newData } });
+          }}
+        >
           Leer más
         </Button>
         {view == "news" ? (
