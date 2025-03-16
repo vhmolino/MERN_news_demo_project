@@ -1,9 +1,6 @@
 import axios from "axios";
 import { ObjectId } from "mongodb";
-
-export type ApiResponse<T> =
-  | { error: string; data: never }
-  | { data: T; error: never };
+import { ApiResponse } from "../types/types";
 
 const API_URL = `${import.meta.env.VITE_SERVER_URL}/news/archiveNew`;
 
@@ -11,7 +8,7 @@ export const archiveNew = async (
   newId: ObjectId
 ): Promise<ApiResponse<null>> => {
   try {
-    const response = await axios.post(
+    await axios.post(
       API_URL,
       { newId },
       {

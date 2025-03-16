@@ -16,7 +16,6 @@ app.use("/news", newsRoutes);
 
 connectDB();
 const PORT = process.env.PORT;
-console.log(PORT);
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });

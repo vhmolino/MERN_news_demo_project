@@ -8,7 +8,7 @@ export const deleteNew = async (req: Request, res: Response) => {
     const db = getDB();
     const id = req.body.newId;
     const objectId = new ObjectId(id);
-    const result = await db.collection("news").deleteOne({ _id: objectId });
+    await db.collection("news").deleteOne({ _id: objectId });
 
     res.status(200).json({});
   } catch (error) {

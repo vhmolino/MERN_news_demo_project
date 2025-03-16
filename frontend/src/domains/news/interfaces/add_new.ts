@@ -1,9 +1,5 @@
 import axios from "axios";
-import { New } from "../types/types";
-
-export type ApiResponse<T> =
-  | { error: string; data: never }
-  | { data: T; error: never };
+import { ApiResponse, New } from "../types/types";
 
 const API_URL = `${import.meta.env.VITE_SERVER_URL}/news/add`;
 
@@ -17,7 +13,6 @@ export const addNew = async (
         "Content-Type": "application/json",
       },
     });
-    console.log(response.data);
     return { data: response.data.data, error: null as never };
   } catch (error) {
     console.error("Error al agregar la noticia:", error);

@@ -8,7 +8,7 @@ export const archiveNew = async (req: Request, res: Response) => {
     const db = getDB();
     const id = req.body.newId;
     const objectId = new ObjectId(id);
-    const newTarchive = await db
+    await db
       .collection("news")
       .findOneAndUpdate(
         { _id: objectId },
