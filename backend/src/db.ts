@@ -10,7 +10,9 @@ const connectDB = async () => {
   try {
     client = new MongoClient(dbUrl || "");
     await client.connect();
-    db = client.db();
+    db = client.db("MERN_DB");
+    console.log("Collections");
+    console.log((await db.collections()).map((e) => e.dbName));
     console.log("Conectado a MongoDB");
   } catch (error) {
     console.error("Error al conectar a MongoDB:", error);
